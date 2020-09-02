@@ -22,8 +22,8 @@ ___
     - literais:
         - (constantes do tipo int, float, boolean, char/string)
 
-- Contagem de linhas:
-    - int get_line_number(void)
+- ~~Contagem de linhas:~~
+    - ~~int get_line_number(void)~~
 
 - Ignorar Comentários:
     - no formato C99 (`//`, `/* */`)
