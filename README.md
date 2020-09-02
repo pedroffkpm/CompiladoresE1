@@ -6,15 +6,15 @@ Primeira Etapa do trabalho de Compiladores INF01147
 ___
 
 - Reconhecimento dos tokens:
-    - palavras reservadas:
-        - (int, float, if, else, ...)
+    - ~~palavras reservadas:~~
+        - ~~(`int`, `float`, `if`, `else`, ...)~~
 
-    - caracteres especiais:
-        - (:, ;, {, }, ...)
-        - *usar valor ASCII*
+    - ~~caracteres especiais:~~
+        - ~~(`:`, `;`, `{`, `}`, ...)~~
+        - ~~*usar valor ASCII*~~
 
-    - operadores compostos:
-        - (<=, >=, ==, !=, ...)
+    - ~~operadores compostos:~~
+        - ~~(`<=`, `>=`, `==`, `!=`, ...)~~
 
     - identificadores:
         - (caractere alfabético seguido de zero ou mais caracteres alfanuméricos)
@@ -26,7 +26,7 @@ ___
     - int get_line_number(void)
 
 - Ignorar Comentários:
-    - no formato C99 (//, /* */)
+    - no formato C99 (`//`, `/* */`)
 
 - Lançar erros léxicos:
     - retornar token de erro
