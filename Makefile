@@ -1,6 +1,6 @@
 CC = gcc
 LFL = lfl
-# CCFLAGS = 
+CCFLAGS = -Wno-parentheses
 
 #test if macos
 UNAME_S := $(shell uname -s)
@@ -11,7 +11,7 @@ endif
 
 all:
 	flex scanner.l
-	$(CC) -o etapa1 main.c lex.yy.c -$(LFL)
+	$(CC) $(CCFLAGS) -o etapa1 main.c lex.yy.c -$(LFL)
 
 clean:
 	rm -rf lex.yy.c etapa1

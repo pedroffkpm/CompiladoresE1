@@ -1,10 +1,13 @@
 
 %{
 #include "tokens.h"
+
+static int line_count = 1;
 %}
 
 white [ \t]+
 digit [0-9]
+linebreak \n
 
 %%
 
@@ -47,8 +50,10 @@ digit [0-9]
 ">>" { return TK_OC_SR; }
 "<<" { return TK_OC_SL; }
 
+{linebreak} { line_count++; }
+
 %%
 
 int get_line_number() {
-    return 1;
+    return line_count;
 }
