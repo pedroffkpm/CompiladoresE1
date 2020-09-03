@@ -7,11 +7,18 @@ static int line_count = 1;
 
 white [ \t]+
 digit [0-9]
+integer {digit}+
+letter [a-zA-Z]
+
+char_esp [,;:\(\)\[\]\{\}+-|*/<>=!&%#ˆ.$]
+
 linebreak \n
+inlinecomment \/\/.*
+separator {white}|{linebreak}
+
+id {letter}({letter}|{digit}|_)*
 
 %%
-
-[,;:\(\)\[\]\{\}+-|*/<>=!&%#ˆ.$] { return yytext[0]; }
 
 "int" { return TK_PR_INT; }
 "float" { return TK_PR_FLOAT; }
@@ -50,7 +57,12 @@ linebreak \n
 ">>" { return TK_OC_SR; }
 "<<" { return TK_OC_SL; }
 
-{linebreak} { line_count++; }
+{id} { return TK_IDENTIFICADOR; }
+{char_esp} { return yytext[0]; }
+{linebreak} { printf("linebreak\n"); line_count++; }
+{inlinecomment} { printf("inline comment\n"); }
+
+{separator} { printf("SEPARATOR\n"); }
 
 %%
 
