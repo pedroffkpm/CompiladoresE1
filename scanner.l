@@ -11,12 +11,17 @@ integer {digit}+
 letter [a-zA-Z]
 
 char_esp [,;:\(\)\[\]\{\}+-|*/<>=!&%#ˆ.$]
+id {letter}({letter}|{digit}|_)*
 
 linebreak \n
 inlinecomment \/\/.*
 separator {white}|{linebreak}
 
-id {letter}({letter}|{digit}|_)*
+block_start \/\*
+block_end \*\/
+
+/* exclusive start conditions */
+%x MULTILINE_COMMENT
 
 %%
 
@@ -59,10 +64,17 @@ id {letter}({letter}|{digit}|_)*
 
 {id} { return TK_IDENTIFICADOR; }
 {char_esp} { return yytext[0]; }
-{linebreak} { printf("linebreak\n"); line_count++; }
-{inlinecomment} { printf("inline comment\n"); }
+{linebreak} { line_count++; }
 
-{separator} { printf("SEPARATOR\n"); }
+{inlinecomment} 
+
+{block_start} { BEGIN(MULTILINE_COMMENT); }
+<MULTILINE_COMMENT>{block_end} { BEGIN(INITIAL); }
+<MULTILINE_COMMENT>{linebreak} { line_count++; }
+<MULTILINE_COMMENT>. 
+
+{separator} 
+
 
 %%
 

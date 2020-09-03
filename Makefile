@@ -9,7 +9,7 @@ ifeq ($(UNAME_S), Darwin)
 endif
 
 
-all:
+all: clean
 	flex scanner.l
 	$(CC) $(CCFLAGS) -o etapa1 main.c lex.yy.c -$(LFL)
 

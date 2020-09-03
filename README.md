@@ -16,8 +16,8 @@ ___
     - ~~operadores compostos:~~
         - ~~(`<=`, `>=`, `==`, `!=`, ...)~~
 
-    - identificadores:
-        - (caractere alfabético seguido de zero ou mais caracteres alfanuméricos)
+    - ~~identificadores:~~
+        - ~~(caractere alfabético seguido de zero ou mais caracteres alfanuméricos)~~
 
     - literais:
         - (constantes do tipo int, float, boolean, char/string)
@@ -25,8 +25,8 @@ ___
 - ~~Contagem de linhas:~~
     - ~~int get_line_number(void)~~
 
-- Ignorar Comentários:
-    - no formato C99 (`//`, `/* */`)
+- ~~Ignorar Comentários:~~
+    - ~~no formato C99 (`//`, `/* */`)~~
 
 - Lançar erros léxicos:
     - retornar token de erro
