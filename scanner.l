@@ -73,7 +73,7 @@ floatlit {intlit}("."{digit}+)((E|e){intlit})?
 false { return TK_LIT_FALSE; }
 true { return TK_LIT_TRUE; }
 
-'({asciialphabet}|{controlchar})' { return TK_LIT_CHAR; }
+'({asciialphabet}|{controlchar}|{char_esp}|_)' { return TK_LIT_CHAR; }
 \"[^\"\n]*\" { return TK_LIT_STRING; }
 
 {id} { return TK_IDENTIFICADOR; }
