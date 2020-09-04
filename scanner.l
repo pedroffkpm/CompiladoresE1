@@ -11,9 +11,9 @@ integer {digit}+
 letter [a-zA-Z_]
 
 char_esp [,;:\(\)\[\]\{\}+-|*/<>=!&%#ˆ.$]
-id {letter}({letter}|{digit}|_)*
+id {letter}({letter}|{digit})*
 
-alphanumeric {letter}|{digit}|_
+alphanumeric {letter}|{digit}
 controlchar "\\0"|"\\t"|"\\n"|"\\v"|"\\f"|"\\r"
 asciialphabet {char_esp}|{digit}|{letter}
 
@@ -90,7 +90,7 @@ true { return TK_LIT_TRUE; }
 
 
 
-{inlinecomment} 
+{inlinecomment} { line_count++; }
 
 {block_start} { BEGIN(MULTILINE_COMMENT); }
 <MULTILINE_COMMENT>{block_end} { BEGIN(INITIAL); }
