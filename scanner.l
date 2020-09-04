@@ -7,14 +7,14 @@ static int line_count = 1;
 
 white [ \t]+
 digit [0-9]
-letter [a-zA-Z]
+letter [a-zA-Z_]
 alphanumeric {letter}|{digit}
 
 char_esp [,;:\(\)\[\]\{\}\+\-|*/<>=!&%#ˆ.$]
-id {letter}({alphanumeric}|_)*
+id {letter}({alphanumeric})*
 
 controlchar "\\0"|"\\t"|"\\n"|"\\v"|"\\f"|"\\r"
-asciialphabet {char_esp}|{digit}|{letter}|_
+asciialphabet {char_esp}|{digit}|{letter}
 
 linebreak \n
 
