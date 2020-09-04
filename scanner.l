@@ -90,7 +90,7 @@ true { return TK_LIT_TRUE; }
 
 
 
-{inlinecomment} { line_count++; }
+{inlinecomment}
 
 {block_start} { BEGIN(MULTILINE_COMMENT); }
 <MULTILINE_COMMENT>{block_end} { BEGIN(INITIAL); }
