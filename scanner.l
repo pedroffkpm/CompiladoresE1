@@ -14,7 +14,7 @@ char_esp [,;:\(\)\[\]\{\}\+\-|*/<>=!&%#ˆ.$]
 id {letter}({alphanumeric}|_)*
 
 controlchar "\\0"|"\\t"|"\\n"|"\\v"|"\\f"|"\\r"
-asciialphabet {char_esp}|{digit}|{letter}
+asciialphabet {char_esp}|{digit}|{letter}|_
 
 linebreak \n
 
@@ -73,7 +73,7 @@ floatlit {intlit}("."{digit}+)((E|e){intlit})?
 false { return TK_LIT_FALSE; }
 true { return TK_LIT_TRUE; }
 
-'({asciialphabet}|{controlchar}|{char_esp}|_)' { return TK_LIT_CHAR; }
+'({asciialphabet}|{controlchar})' { return TK_LIT_CHAR; }
 \"[^\"\n]*\" { return TK_LIT_STRING; }
 
 {id} { return TK_IDENTIFICADOR; }
