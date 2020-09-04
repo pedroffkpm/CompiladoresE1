@@ -19,8 +19,8 @@ ___
     - ~~identificadores:~~
         - ~~(caractere alfabético seguido de zero ou mais caracteres alfanuméricos)~~
 
-    - literais:
-        - (constantes do tipo int, float, boolean, char/string)
+    - ~~literais:~~
+        - ~~(constantes do tipo int, float, boolean, char/string)~~
 
 - ~~Contagem de linhas:~~
     - ~~int get_line_number(void)~~
@@ -28,8 +28,8 @@ ___
 - ~~Ignorar Comentários:~~
     - ~~no formato C99 (`//`, `/* */`)~~
 
-- Lançar erros léxicos:
-    - retornar token de erro
+- ~~Lançar erros léxicos:~~
+    - ~~retornar token de erro~~
 
 ### Entrega:
 

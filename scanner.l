@@ -13,12 +13,22 @@ letter [a-zA-Z]
 char_esp [,;:\(\)\[\]\{\}+-|*/<>=!&%#ˆ.$]
 id {letter}({letter}|{digit}|_)*
 
+alphanumeric {letter}|{digit}|_
+controlchar "\\0"|"\\t"|"\\n"|"\\v"|"\\f"|"\\r"
+asciialphabet " "|"!"|"#"|"$"|"%"|"&"|"*"|"+"|","|"-"|"."|"/"|":"|";"|"<"|"="|">"|"?"|"@"|"["|"]"|"^"|"_"|"`"|"{"|"|"|"}"|"~"|"\\"|\"|{digit}|{letter}|"'"|"("|")"
+
+
+
 linebreak \n
 inlinecomment \/\/.*
 separator {white}|{linebreak}
 
 block_start \/\*
 block_end \*\/
+
+intlit "+"({digit})+|"-"({digit})+|{digit}+
+floatlit {intlit}"."{digit}+
+scientificlit {floatlit}(E|e){intlit} 
 
 /* exclusive start conditions */
 %x MULTILINE_COMMENT
@@ -62,9 +72,24 @@ block_end \*\/
 ">>" { return TK_OC_SR; }
 "<<" { return TK_OC_SL; }
 
-{id} { return TK_IDENTIFICADOR; }
+
 {char_esp} { return yytext[0]; }
 {linebreak} { line_count++; }
+
+{intlit}{id} { return TOKEN_ERRO; }
+{floatlit}{id} { return TOKEN_ERRO; }
+{intlit} { return TK_LIT_INT; }
+{floatlit} { return TK_LIT_FLOAT; }
+{scientificlit} { return TK_LIT_FLOAT; }
+false { return TK_LIT_FALSE; }
+true { return TK_LIT_TRUE; }
+{id} { return TK_IDENTIFICADOR; }
+'({asciialphabet}|{controlchar})' { return TK_LIT_CHAR; }
+\"[^\"\n]*\" { return TK_LIT_STRING; }
+
+
+
+
 
 {inlinecomment} 
 
@@ -74,6 +99,8 @@ block_end \*\/
 <MULTILINE_COMMENT>. 
 
 {separator} 
+
+. { return TOKEN_ERRO; }
 
 
 %%
