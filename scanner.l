@@ -8,14 +8,14 @@ static int line_count = 1;
 white [ \t]+
 digit [0-9]
 integer {digit}+
-letter [a-zA-Z]
+letter [a-zA-Z_]
 
 char_esp [,;:\(\)\[\]\{\}+-|*/<>=!&%#ˆ.$]
 id {letter}({letter}|{digit}|_)*
 
 alphanumeric {letter}|{digit}|_
 controlchar "\\0"|"\\t"|"\\n"|"\\v"|"\\f"|"\\r"
-asciialphabet " "|"!"|"#"|"$"|"%"|"&"|"*"|"+"|","|"-"|"."|"/"|":"|";"|"<"|"="|">"|"?"|"@"|"["|"]"|"^"|"_"|"`"|"{"|"|"|"}"|"~"|"\\"|\"|{digit}|{letter}|"'"|"("|")"
+asciialphabet {char_esp}|{digit}|{letter}
 
 
 
@@ -77,7 +77,6 @@ scientificlit {floatlit}(E|e){intlit}
 {linebreak} { line_count++; }
 
 {intlit}{id} { return TOKEN_ERRO; }
-{floatlit}{id} { return TOKEN_ERRO; }
 {intlit} { return TK_LIT_INT; }
 {floatlit} { return TK_LIT_FLOAT; }
 {scientificlit} { return TK_LIT_FLOAT; }
